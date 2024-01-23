@@ -5,8 +5,15 @@ import { faGear } from '@fortawesome/free-solid-svg-icons/faGear';
 import LogoComponent from '../components/LogoComponent';
 import ItemComponent from '../components/ItemComponent';
 import TotalComponent from '../components/TotalComponent';
+import { useState } from 'react';
 
 const HomeScreen = ({navigation}) => {
+  const [total, setTotal] = useState(0);
+
+  const handleCheckChange = price => {
+    setTotal(total + price)
+  }
+
   return (
     <View style={styles.container}>
         <View style={styles.logoContainer}>
@@ -16,16 +23,16 @@ const HomeScreen = ({navigation}) => {
           </Pressable>
         </View>
         <ScrollView style={{ flex: 1, marginTop: 20, marginBottom: 20 }}>
-          <ItemComponent title="Test1" description="Descript test" price="$20.00"></ItemComponent>
-          <ItemComponent title="Test2" description="Descript test" price="$20.00"></ItemComponent>
-          <ItemComponent title="Test3" description="Descript test" price="$20.00"></ItemComponent>
-          <ItemComponent title="Test4" description="Descript test" price="$20.00"></ItemComponent>
-          <ItemComponent title="Test5" description="Descript test" price="$20.00"></ItemComponent>
-          <ItemComponent title="Test6" description="Descript test" price="$20.00"></ItemComponent>
-          <ItemComponent title="Test7" description="Descript test" price="$20.00"></ItemComponent>
-          <ItemComponent title="Test8" description="Descript test" price="$20.00"></ItemComponent>
-          <ItemComponent title="Test9" description="Descript test" price="$20.00"></ItemComponent>
-          <TotalComponent total="$100"></TotalComponent>
+          <ItemComponent  title="test" description="Test description" price={10.00} handleCheckChange={handleCheckChange}></ItemComponent>
+          <ItemComponent title="Test2" description="Descript test" price={20.00} handleCheckChange={handleCheckChange}></ItemComponent>
+          <ItemComponent title="Test3" description="Descript test" price={30.00} handleCheckChange={handleCheckChange}></ItemComponent>
+          <ItemComponent title="Test4" description="Descript test" price={40.00} handleCheckChange={handleCheckChange}></ItemComponent>
+          <ItemComponent title="Test5" description="Descript test" price={50.00} handleCheckChange={handleCheckChange}></ItemComponent>
+          <ItemComponent title="Test6" description="Descript test" price={60.00} handleCheckChange={handleCheckChange}></ItemComponent>
+          <ItemComponent title="Test7" description="Descript test" price={70.00} handleCheckChange={handleCheckChange}></ItemComponent>
+          <ItemComponent title="Test8" description="Descript test" price={80.00} handleCheckChange={handleCheckChange}></ItemComponent>
+          <ItemComponent title="Test9" description="Descript test" price={90.00} handleCheckChange={handleCheckChange}></ItemComponent>
+          <TotalComponent total={total}></TotalComponent>
         </ScrollView>
         <StatusBar style="auto" />
       </View>
