@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Card } from "@rneui/base";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable, Alert, Modal } from "react-native";
 import CheckBox from 'expo-checkbox';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faEllipsisVertical, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const styles = StyleSheet.create({
     card: {
@@ -12,12 +14,23 @@ const styles = StyleSheet.create({
         padding: 5,
         marginTop: 5,
         marginBottom: 5
+    },
+    popup: {
+        position: 'absolute',
+        top: 35,
+        right: 0,
+        backgroundColor: '#fff',
+        padding: 5,
+        flexDirection: 'row',
+        borderColor: '000',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderRadius: 5,
+        zIndex: 1
     }
 });
 
 const ItemComponent = (props) => {
-
-    const [isChecked, setChecked] = useState(false);
 
     return (
         <View style={styles.card}>
@@ -26,7 +39,7 @@ const ItemComponent = (props) => {
                     <Card.Title>{props.title}</Card.Title>
                 </View>
                 <View style={{ flexGrow: 0 }}>
-                    <CheckBox value={isChecked} onValueChange={() => {setChecked(!isChecked); props.handleCheckChange(!isChecked ? props.price : props.price * (-1))}}></CheckBox>
+                    <CheckMenuButton isSettings={props.isSettings} handleCheckChange={props.handleCheckChange} price={props.price}></CheckMenuButton>
                 </View>
             </View>
 
@@ -40,3 +53,39 @@ const ItemComponent = (props) => {
 };
 
 export default ItemComponent;
+
+function CheckMenuButton(props) {
+    const [isChecked, setChecked] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
+
+    if (props.isSettings) {
+        return (
+            <View>
+                <Pressable onPress={() => { setModalVisible(!modalVisible) }}>
+                    <FontAwesomeIcon icon={faEllipsisVertical} size={28} />
+                </Pressable>
+                <ItemSettingsMenu modalVisible={modalVisible} setModalVisible={setModalVisible} ></ItemSettingsMenu>
+            </View>
+        );
+    }
+
+    return <CheckBox value={isChecked} onValueChange={() => { setChecked(!isChecked); props.handleCheckChange(!isChecked ? props.price : props.price * (-1)) }}></CheckBox>
+}
+
+function ItemSettingsMenu({ modalVisible, setModalVisible }) {
+
+    if (modalVisible) {
+        return (
+            <View style={styles.popup}>
+                <Pressable style={{ paddingEnd: 15 }}>
+                    <FontAwesomeIcon icon={faPenToSquare} size={28}></FontAwesomeIcon>
+                </Pressable>
+                <Pressable>
+                    <FontAwesomeIcon icon={faTrash} size={28}></FontAwesomeIcon>
+                </Pressable>
+            </View>
+        );
+    }
+
+    return
+}
