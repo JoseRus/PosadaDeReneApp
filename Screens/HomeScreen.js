@@ -40,8 +40,8 @@ const HomeScreen = ({navigation}) => {
           <ItemComponent title="Noche full 26 personas" description="Todas las habitaciones por una noche" price={295.00} handleCheckChange={handleCheckChange} isSettings={false}></ItemComponent>
           <ItemComponent title="Fin de semana" description="Todas las habitaciones por el fin de semana completo" price={650.00} handleCheckChange={handleCheckChange} isSettings={false}></ItemComponent>
           <DiscountComponent handleDiscountEnableChange={handleDiscountEnableChange}></DiscountComponent>
-          <TotalComponent total={total} discount={discount}></TotalComponent>
         </ScrollView>
+        <TotalComponent total={total} discount={discount}></TotalComponent>
         <StatusBar style="auto" />
       </View>
   );

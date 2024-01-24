@@ -10,7 +10,8 @@ const styles = StyleSheet.create({
         backgroundColor: "#969696",
         justifyContent: "space-between",
         borderRadius: 5,
-        padding: 5
+        padding: 5,
+        marginBottom: 10
     }
 });
 

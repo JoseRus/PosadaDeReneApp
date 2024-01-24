@@ -69,7 +69,7 @@ function CheckMenuButton(props) {
         );
     }
 
-    return <CheckBox value={isChecked} onValueChange={() => { setChecked(!isChecked); props.handleCheckChange(!isChecked ? props.price : props.price * (-1)) }}></CheckBox>
+    return <CheckBox value={isChecked} onValueChange={() => { setChecked(!isChecked); props.handleCheckChange(!isChecked ? props.price : props.price * (-1)) }} style={{width:32, height: 32}}></CheckBox>
 }
 
 function ItemSettingsMenu({ modalVisible, setModalVisible }) {
