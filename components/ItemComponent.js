@@ -39,7 +39,7 @@ const ItemComponent = (props) => {
                     <Card.Title>{props.title}</Card.Title>
                 </View>
                 <View style={{ flexGrow: 0 }}>
-                    <CheckMenuButton isSettings={props.isSettings} handleCheckChange={props.handleCheckChange} price={props.price}></CheckMenuButton>
+                    <CheckMenuButton isSettings={props.isSettings} handleCheckChange={props.handleCheckChange} handleShowItemModal={props.handleShowItemModal} price={props.price}></CheckMenuButton>
                 </View>
             </View>
 
@@ -64,7 +64,7 @@ function CheckMenuButton(props) {
                 <Pressable onPress={() => { setModalVisible(!modalVisible) }}>
                     <FontAwesomeIcon icon={faEllipsisVertical} size={28} />
                 </Pressable>
-                <ItemSettingsMenu modalVisible={modalVisible} setModalVisible={setModalVisible} ></ItemSettingsMenu>
+                <ItemSettingsMenu modalVisible={modalVisible} setModalVisible={setModalVisible} handleShowItemModal={props.handleShowItemModal} ></ItemSettingsMenu>
             </View>
         );
     }
@@ -72,12 +72,12 @@ function CheckMenuButton(props) {
     return <CheckBox value={isChecked} onValueChange={() => { setChecked(!isChecked); props.handleCheckChange(!isChecked ? props.price : props.price * (-1)) }} style={{width:32, height: 32}}></CheckBox>
 }
 
-function ItemSettingsMenu({ modalVisible, setModalVisible }) {
+function ItemSettingsMenu({ modalVisible, setModalVisible, handleShowItemModal }) {
 
     if (modalVisible) {
         return (
             <View style={styles.popup}>
-                <Pressable style={{ paddingEnd: 15 }}>
+                <Pressable style={{ paddingEnd: 15 }} onPress={() => {handleShowItemModal(true); setModalVisible(false)}}>
                     <FontAwesomeIcon icon={faPenToSquare} size={28}></FontAwesomeIcon>
                 </Pressable>
                 <Pressable>
