@@ -5,7 +5,8 @@ import { Modal } from "react-native";
 import { useState } from "react";
 import { faCirclePlus, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { Button } from "@rneui/base";
+import ModalViewComponent from "../components/ModalViewComponent";
+
 
 const SettingsScreen = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -35,18 +36,7 @@ const SettingsScreen = ({ navigation }) => {
                 visible={modalVisible}
                 onRequestClose={() => setModalVisible(!modalVisible)}
             >
-                <View style={styles.centered}>
-                    <View style={styles.modalView}>
-                        <Text style={{padding: 5, fontSize: 20}}>Nuevo Item</Text>
-                        <TextInput placeholder="Titulo" style={styles.input}></TextInput>
-                        <TextInput placeholder="Descripcion" style={styles.input}></TextInput>
-                        <TextInput placeholder="Precio" style={styles.input} inputMode="decimal"></TextInput>
-                        <View style={{flexDirection: "row", justifyContent: "space-around", marginTop: 15}}>
-                            <Button title={"Cancelar"} color="#4f4f4f" onPress={() => {setModalVisible(!modalVisible)}}></Button>
-                            <Button title={"Guardar"}></Button>
-                        </View>
-                    </View>
-                </View>
+                <ModalViewComponent setModalVisible={setModalVisible}></ModalViewComponent>
             </Modal>
             <StatusBar style="auto" />
             <View style={{ flexDirection: "row", justifyContent: "center", position: "absolute", bottom: 20, right: 20 }}>
@@ -67,29 +57,4 @@ const styles = StyleSheet.create({
         marginTop: 50,
         marginRight: 20,
     },
-    centered: {
-        flex: 1,
-        justifyContent: "center",
-    },
-    modalView: {
-        margin: 20,
-        backgroundColor: 'white',
-        borderRadius: 20,
-        padding: 15,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5,
-    },
-    input: {
-        borderStyle: "solid",
-        borderRadius: 5,
-        borderWidth: 1,
-        padding: 5,
-        margin: 5
-    }
 });
