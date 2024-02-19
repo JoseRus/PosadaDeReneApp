@@ -31,7 +31,12 @@ const styles = StyleSheet.create({
 });
 
 const ItemComponent = (props) => {
-
+    const [id, setId] = useState(0);
+    
+    if(props.isSettings){
+        setId(props.id);
+    }
+    
     return (
         <View style={styles.card}>
             <View style={{ flexDirection: 'row' }}>
@@ -46,7 +51,7 @@ const ItemComponent = (props) => {
             <Card.Divider />
             <View style={{ alignItems: "left" }}>
                 <Text >{props.description}</Text>
-                <Text style={{ textAlign: "right" }} id='itemPrice'>${props.price}</Text>
+                <Text style={{ textAlign: "right" }}>${props.price}</Text>
             </View>
         </View>
     );

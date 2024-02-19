@@ -1,18 +1,38 @@
 import * as React from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import * as StorageFunctions from '../Data/StorageFunctions';
+import { useState } from 'react';
+import { BSON } from 'realm';
+import { useRealm } from '@realm/react';
+import { ItemObject } from '../Data/ItemObject';
 
 const ModalViewComponent = (props) => {
+    const [id, setId] = useState(0);
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState('');
+    const realm = useRealm();
+
+    const handleSavePress = () => {
+        realm.write(() => {
+            realm.create(ItemObject, {
+                _id: new BSON.ObjectID(),
+                title: title,
+                description: description,
+                price: price
+            });
+        });
+    }
+
     return (
         <View style={styles.centered}>
             <View style={styles.modalView}>
                 <Text style={{ padding: 5, fontSize: 20 }}>Nuevo Item</Text>
-                <TextInput placeholder="Titulo" style={styles.input}></TextInput>
-                <TextInput placeholder="Descripcion" style={styles.input}></TextInput>
-                <TextInput placeholder="Precio" style={styles.input} inputMode="decimal"></TextInput>
+                <TextInput placeholder="Titulo" style={styles.input} value={title} onChangeText={setTitle}></TextInput>
+                <TextInput placeholder="Descripcion" style={styles.input} value={description} onChangeText={setDescription}></TextInput>
+                <TextInput placeholder="Precio" style={styles.input} inputMode="decimal" value={price} onChangeText={setPrice}></TextInput>
                 <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 15 }}>
                     <Button title={"Cancelar"} color="#4f4f4f" onPress={() => { props.setModalVisible(false) }}></Button>
-                    <Button title={"Guardar"} onPress={() => { StorageFunctions.save('items', '{}') }}></Button>
+                    <Button title={"Guardar"} onPress={handleSavePress}></Button>
                 </View>
             </View>
         </View>
