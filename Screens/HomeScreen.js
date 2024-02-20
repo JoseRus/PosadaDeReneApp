@@ -8,13 +8,13 @@ import TotalComponent from '../components/TotalComponent';
 import DiscountComponent from '../components/DiscountComponent';
 import { useState } from 'react';
 import { Button } from '@rneui/base';
-import { useRealm } from '@realm/react';
+import { useRealm, useQuery } from '@realm/react';
 import { ItemObject } from '../Data/ItemObject';
 
 const HomeScreen = ({ navigation }) => {
   const [total, setTotal] = useState(0);
   const [discount, setDiscount] = useState(0);
-  const realm = useRealm();
+  
   const handleCheckChange = price => {
     setTotal(total + price)
   }
@@ -23,7 +23,7 @@ const HomeScreen = ({ navigation }) => {
     setDiscount(discountAmount)
   }
 
-  const items = realm.useQuery(ItemObject);
+  const items = useQuery(ItemObject);
 
   if (items && items.length > 0) {
     return (
@@ -37,7 +37,7 @@ const HomeScreen = ({ navigation }) => {
         <ScrollView style={{ flex: 1, marginTop: 20, marginBottom: 20 }}>
           {items.map((item) => {
             return (
-              <ItemComponent id={item._id} title={item.title} description={item.description} price={item.price} handleCheckChange={handleCheckChange} isSettings={false}></ItemComponent>
+              <ItemComponent key={item._id} id={item._id} title={item.title} description={item.description} price={item.price} handleCheckChange={handleCheckChange} isSettings={false}></ItemComponent>
             )
           })}
           {/* <ItemComponent title="2 Personas" description="Cama matrimonial. Sin televisor" price={25.00} handleCheckChange={handleCheckChange} isSettings={false}></ItemComponent> */}

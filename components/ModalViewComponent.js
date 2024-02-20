@@ -1,26 +1,33 @@
 import * as React from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import { useState } from 'react';
+import { View, Text, TextInput, Button, StyleSheet, ToastAndroid } from 'react-native';
+import { useState, useEffect } from 'react';
 import { BSON } from 'realm';
-import { useRealm } from '@realm/react';
+import { useRealm, useObject } from '@realm/react';
 import { ItemObject } from '../Data/ItemObject';
 
 const ModalViewComponent = (props) => {
-    const [id, setId] = useState(0);
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [price, setPrice] = useState('');
+    let item;
+    
+    if (props.id) {
+        item = useObject(ItemObject, props.id);
+    }
+
+    const [title, setTitle] = useState(item ? item.title : '');
+    const [description, setDescription] = useState(item ? item.description : '');
+    const [price, setPrice] = useState(item ? item.price.toString() : '');
     const realm = useRealm();
 
     const handleSavePress = () => {
         realm.write(() => {
             realm.create(ItemObject, {
-                _id: new BSON.ObjectID(),
+                _id: props.id ? props.id : new BSON.ObjectID(),
                 title: title,
                 description: description,
-                price: price
-            });
+                price: parseFloat(price)
+            }, 'modified');
         });
+
+        props.setModalVisible(false);
     }
 
     return (

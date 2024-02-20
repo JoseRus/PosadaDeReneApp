@@ -1,3 +1,5 @@
+import Realm from "realm";
+
 export class ItemObject extends Realm.Object {
     static schema = {
         name: 'ItemObject',

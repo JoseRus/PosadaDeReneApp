@@ -6,13 +6,19 @@ import { useState } from "react";
 import { faCirclePlus, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import ModalViewComponent from "../components/ModalViewComponent";
-import * as StorageFunctions from "../Data/StorageFunctions";
+import { useQuery } from "@realm/react";
+import { ItemObject } from "../Data/ItemObject";
 
 
 const SettingsScreen = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
+    const [currentId, setId] = useState();
+    const items = useQuery(ItemObject);
 
-    const items = StorageFunctions.getValueFor('items')
+    const handleShowItemModal = (show, id) => {
+        setId(id);
+        setModalVisible(show);
+    }
 
     if(items && items.length > 0){
         return (
@@ -26,7 +32,7 @@ const SettingsScreen = ({ navigation }) => {
                     {
                         items.map((item) => {
                             return(
-                                <ItemComponent title={item.title} description={item.description} price={item.price} id={item.id} isSettings={true} handleShowItemModal={setModalVisible}></ItemComponent>
+                                <ItemComponent key={item._id} id={item._id} title={item.title} description={item.description} price={item.price} isSettings={true} handleShowItemModal={handleShowItemModal}></ItemComponent>
                             )
                         })
                     }
@@ -38,7 +44,7 @@ const SettingsScreen = ({ navigation }) => {
                     visible={modalVisible}
                     onRequestClose={() => setModalVisible(!modalVisible)}
                 >
-                    <ModalViewComponent setModalVisible={setModalVisible}></ModalViewComponent>
+                    <ModalViewComponent setModalVisible={setModalVisible} id={currentId}></ModalViewComponent>
                 </Modal>
                 <StatusBar style="auto" />
                 <View style={{ flexDirection: "row", justifyContent: "center", position: "absolute", bottom: 20, right: 20 }}>
