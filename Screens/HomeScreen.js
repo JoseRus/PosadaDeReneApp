@@ -14,10 +14,10 @@ import { ItemObject } from '../Data/ItemObject';
 const HomeScreen = ({ navigation }) => {
   const [total, setTotal] = useState(0);
   const [discount, setDiscount] = useState(0);
-  
-  const handleCheckChange = price => {
+
+  /* const handleCheckChange = price => {
     setTotal(total + price)
-  }
+  } */
 
   const handleDiscountEnableChange = discountAmount => {
     setDiscount(discountAmount)
@@ -37,7 +37,18 @@ const HomeScreen = ({ navigation }) => {
         <ScrollView style={{ flex: 1, marginTop: 20, marginBottom: 20 }}>
           {items.map((item) => {
             return (
-              <ItemComponent key={item._id} id={item._id} title={item.title} description={item.description} price={item.price} handleCheckChange={handleCheckChange} isSettings={false}></ItemComponent>
+              <ItemComponent
+                key={item._id}
+                id={item._id}
+                title={item.title}
+                description={item.description}
+                price={item.price}
+                multiple={item.multiple}
+                isSettings={false}
+                total={total}
+                setTotal={setTotal}>
+
+              </ItemComponent>
             )
           })}
           {/* <ItemComponent title="2 Personas" description="Cama matrimonial. Sin televisor" price={25.00} handleCheckChange={handleCheckChange} isSettings={false}></ItemComponent> */}
@@ -57,7 +68,7 @@ const HomeScreen = ({ navigation }) => {
             <FontAwesomeIcon icon={faGear} size={32} style={{}} />
           </Pressable>
         </View>
-        <View style={{justifyContent: "center",flex: 1 }}>
+        <View style={{ justifyContent: "center", flex: 1 }}>
           <Text style={{ textAlign: "center", fontSize: 25, marginBottom: 10 }}>No hay elementos</Text>
           <Button onPress={() => navigation.navigate('Settings')} >Agregar Elementos</Button>
         </View>

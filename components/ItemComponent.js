@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card } from "@rneui/base";
-import { View, Text, StyleSheet, Pressable, Alert, Modal } from "react-native";
+import { View, Text, StyleSheet, Pressable, Alert, Modal, TextInput } from "react-native";
 import CheckBox from 'expo-checkbox';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEllipsisVertical, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -33,6 +33,28 @@ const styles = StyleSheet.create({
 });
 
 const ItemComponent = (props) => {
+    const [isChecked, setChecked] = useState(false);
+    const [quantity, setQuantity] = useState(1);
+    const [totalPrice, setTotalPrice] = useState();
+
+    const updateQuantity = (quant) => {
+        let tp = quant > 0 ? props.price * quant : props.price
+        let currentItemTotal = quantity * props.price;
+        let currentTotal = props.total - currentItemTotal;
+        setQuantity(quant);
+        setTotalPrice(tp);
+
+        if (isChecked && quant > 0) {
+            props.setTotal(currentTotal + tp);
+        }
+        else if(isChecked){
+            props.setTotal(currentTotal);
+        }
+    }
+
+    const handleCheckChange = (price) => {
+        props.setTotal(props.total + price);
+    }
 
     return (
         <View style={styles.card}>
@@ -41,7 +63,16 @@ const ItemComponent = (props) => {
                     <Card.Title>{props.title}</Card.Title>
                 </View>
                 <View style={{ flexGrow: 0 }}>
-                    <CheckMenuButton isSettings={props.isSettings} handleCheckChange={props.handleCheckChange} handleShowItemModal={props.handleShowItemModal} price={props.price} id={props.id}></CheckMenuButton>
+                    <CheckMenuButton
+                        isSettings={props.isSettings}
+                        handleCheckChange={handleCheckChange}
+                        handleShowItemModal={props.handleShowItemModal}
+                        price={props.price} id={props.id}
+                        quantity={quantity}
+                        totalPrice={totalPrice}
+                        isChecked={isChecked}
+                        setChecked={setChecked}>
+                    </CheckMenuButton>
                 </View>
             </View>
 
@@ -49,6 +80,7 @@ const ItemComponent = (props) => {
             <View style={{ alignItems: "left" }}>
                 <Text >{props.description}</Text>
                 <Text style={{ textAlign: "right" }}>${props.price}</Text>
+                {props.multiple ? <TextInput value={quantity.toString()} onChangeText={updateQuantity} inputMode="decimal"></TextInput> : ''}
             </View>
         </View>
     );
@@ -57,8 +89,8 @@ const ItemComponent = (props) => {
 export default ItemComponent;
 
 function CheckMenuButton(props) {
-    const [isChecked, setChecked] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
+    const totalPrice = props.quantity > 0 ? props.price * props.quantity : props.price
 
     if (props.isSettings) {
         return (
@@ -66,12 +98,26 @@ function CheckMenuButton(props) {
                 <Pressable onPress={() => { setModalVisible(!modalVisible) }}>
                     <FontAwesomeIcon icon={faEllipsisVertical} size={28} />
                 </Pressable>
-                <ItemSettingsMenu modalVisible={modalVisible} setModalVisible={setModalVisible} handleShowItemModal={props.handleShowItemModal} id={props.id} ></ItemSettingsMenu>
+                <ItemSettingsMenu
+                    modalVisible={modalVisible}
+                    setModalVisible={setModalVisible}
+                    handleShowItemModal={props.handleShowItemModal}
+                    id={props.id} >
+
+                </ItemSettingsMenu>
             </View>
         );
     }
 
-    return <CheckBox value={isChecked} onValueChange={() => { setChecked(!isChecked); props.handleCheckChange(!isChecked ? props.price : props.price * (-1)) }} style={{ width: 32, height: 32 }}></CheckBox>
+    return <CheckBox
+        value={props.isChecked}
+        onValueChange={() => {
+            props.setChecked(!props.isChecked);
+            props.handleCheckChange(!props.isChecked ? totalPrice : totalPrice * (-1))
+        }}
+        style={{ width: 32, height: 32 }}>
+
+    </CheckBox>
 }
 
 function ItemSettingsMenu({ modalVisible, setModalVisible, handleShowItemModal, id }) {

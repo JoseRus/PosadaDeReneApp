@@ -4,10 +4,11 @@ import { useState, useEffect } from 'react';
 import { BSON } from 'realm';
 import { useRealm, useObject } from '@realm/react';
 import { ItemObject } from '../Data/ItemObject';
+import { Switch } from '@rneui/base';
 
 const ModalViewComponent = (props) => {
     let item;
-    
+
     if (props.id) {
         item = useObject(ItemObject, props.id);
     }
@@ -15,7 +16,10 @@ const ModalViewComponent = (props) => {
     const [title, setTitle] = useState(item ? item.title : '');
     const [description, setDescription] = useState(item ? item.description : '');
     const [price, setPrice] = useState(item ? item.price.toString() : '');
+    const [multiple, setMultiple] = useState(item ? item.multiple : false);
     const realm = useRealm();
+
+    const toggleSwitch = () => { setMultiple(!multiple) }
 
     const handleSavePress = () => {
         realm.write(() => {
@@ -23,7 +27,8 @@ const ModalViewComponent = (props) => {
                 _id: props.id ? props.id : new BSON.ObjectID(),
                 title: title,
                 description: description,
-                price: parseFloat(price)
+                price: parseFloat(price),
+                multiple: multiple
             }, 'modified');
         });
 
@@ -37,6 +42,10 @@ const ModalViewComponent = (props) => {
                 <TextInput placeholder="Titulo" style={styles.input} value={title} onChangeText={setTitle}></TextInput>
                 <TextInput placeholder="Descripcion" style={styles.input} value={description} onChangeText={setDescription}></TextInput>
                 <TextInput placeholder="Precio" style={styles.input} inputMode="decimal" value={price} onChangeText={setPrice}></TextInput>
+                <View>
+                    <Text>Multiples</Text>
+                    <Switch value={multiple} onValueChange={toggleSwitch}></Switch>
+                </View>
                 <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 15 }}>
                     <Button title={"Cancelar"} color="#4f4f4f" onPress={() => { props.setModalVisible(false) }}></Button>
                     <Button title={"Guardar"} onPress={handleSavePress}></Button>
