@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <RealmProvider schema={[ItemObject]}>
+    <RealmProvider schema={[ItemObject]} schemaVersion={2}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen

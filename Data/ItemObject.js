@@ -7,7 +7,8 @@ export class ItemObject extends Realm.Object {
             _id: 'objectId',
             title: 'string',
             description: 'string',
-            price: 'double'
+            price: 'double',
+            multiple: {type: 'bool', default: 'false'},
         },
         primaryKey: '_id'
     }
