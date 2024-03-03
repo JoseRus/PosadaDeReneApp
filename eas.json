@@ -12,14 +12,16 @@
       "developmentClient": true,
       "android": {
         "buildType": "apk",
-        "gradleCommand": ":app:assembleRelease"
+        "gradleCommand": ":app:assembleRelease",
+        "autoIncrement": "true"
       }
     },
     "production": {
       "distribution": "internal",
       "android": {
         "buildType": "apk",
-        "gradleCommand": ":app:assembleRelease"
+        "gradleCommand": ":app:assembleRelease",
+        "autoIncrement": "true"
       }
     }
   },
