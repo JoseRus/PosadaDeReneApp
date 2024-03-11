@@ -3,7 +3,8 @@ import { View, Text, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     total_text: {
-        fontSize: 50.
+        fontSize: 50,
+        fontFamily: 'UpperEastSide',
     },
     total_container: {
         flexDirection: "row",
@@ -11,7 +12,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         borderRadius: 5,
         padding: 5,
-        marginBottom: 10
+        marginBottom: 10,
     }
 });
 

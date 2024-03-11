@@ -33,6 +33,14 @@
         "projectId": "1e4ff697-3eea-4643-8aee-ecf9d374d3cf"
       }
     },
-    "owner": "rus166"
+    "owner": "rus166",
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/UpperEastSide.ttf"]
+        }
+      ]
+    ]
   }
 }
