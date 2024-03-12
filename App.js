@@ -1,15 +1,26 @@
 import Realm from 'realm';
 Realm.flags.THROW_ON_GLOBAL_REALM = true
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './Screens/HomeScreen';
 import SettingsScreen from './Screens/SettingsScreen';
 import { RealmProvider } from '@realm/react';
 import { ItemObject } from './Data/ItemObject';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as SplashScreen from 'expo-splash-screen';
+import { useFonts } from 'expo-font';
 
-const Stack = createNativeStackNavigator();
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  const [fontsLoaded, fontError] = useFonts({'UpperEastSide': require('./assets/fonts/UpperEastSide.otf')}, [fontsLoaded, fontError]);
+
+  if(!fontsLoaded || fontError){
+    return null;
+  }
+
+  SplashScreen.hideAsync();
+  const Stack = createNativeStackNavigator();
+
   return (
     <RealmProvider schema={[ItemObject]} schemaVersion={2}>
       <NavigationContainer>
@@ -26,5 +37,5 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     </RealmProvider>
-  );
+  ); 
 }

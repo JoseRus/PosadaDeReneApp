@@ -5,7 +5,7 @@ import CheckBox from 'expo-checkbox';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEllipsisVertical, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useRealm, useObject } from "@realm/react"; import { ItemObject } from "../Data/ItemObject";
-
+import TextComponent from "./TextComponent";
 
 const styles = StyleSheet.create({
     card: {
@@ -15,7 +15,9 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 5,
         marginTop: 5,
-        marginBottom: 5
+        marginBottom: 5,
+        marginLeft: 0,
+        marginRight: 0,
     },
     popup: {
         position: 'absolute',
@@ -29,6 +31,13 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         zIndex: 1
+    },
+    title: {
+        fontSize: 40,
+        textAlign: 'center'
+    },
+    text: {
+        fontSize: 30
     }
 });
 
@@ -57,10 +66,10 @@ const ItemComponent = (props) => {
     }
 
     return (
-        <View style={styles.card}>
-            <View style={{ flexDirection: 'row' }}>
+        <Card containerStyle={styles.card}>
+            <View style={{ flexDirection: 'row', marginBottom: 5 }}>
                 <View style={{ flexGrow: 2 }}>
-                    <Card.Title>{props.title}</Card.Title>
+                    <TextComponent style={styles.title}>{props.title}</TextComponent>
                 </View>
                 <View style={{ flexGrow: 0 }}>
                     <CheckMenuButton
@@ -78,11 +87,11 @@ const ItemComponent = (props) => {
 
             <Card.Divider />
             <View style={{ alignItems: "left" }}>
-                <Text >{props.description}</Text>
-                <Text style={{ textAlign: "right" }}>${props.price}</Text>
-                {props.multiple ? <TextInput value={quantity.toString()} onChangeText={updateQuantity} inputMode="decimal"></TextInput> : ''}
+                <TextComponent style={styles.text}>{props.description}</TextComponent>
+                <TextComponent style={[{ textAlign: "right" }, styles.text]}>${props.price}</TextComponent>
+                {props.multiple ? <TextInput value={quantity.toString()} onChangeText={updateQuantity} inputMode="decimal" style={{fontFamily: 'UpperEastSide', fontSize: 25}}></TextInput> : ''}
             </View>
-        </View>
+        </Card>
     );
 };
 

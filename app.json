@@ -2,7 +2,7 @@
   "expo": {
     "name": "PosadaDeReneApp",
     "slug": "posadadereneapp",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -22,7 +22,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.rus166.posadadereneapp"
+      "package": "com.rus166.posadadereneapp",
+      "versionCode": 5
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -32,6 +33,14 @@
         "projectId": "1e4ff697-3eea-4643-8aee-ecf9d374d3cf"
       }
     },
-    "owner": "rus166"
+    "owner": "rus166",
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/UpperEastSide.ttf"]
+        }
+      ]
+    ]
   }
 }

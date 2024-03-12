@@ -1,7 +1,7 @@
 import { Switch } from '@rneui/base';
 import * as React from 'react';
 import { useState } from 'react';
-import { View, TextInput, Stylesheet } from 'react-native';
+import { View, TextInput, StyleSheet } from 'react-native';
 
 const DiscountComponent = ({ handleDiscountEnableChange }) => {
     const [switchEnabled, setSwitchEnabled] = useState(false);
@@ -18,6 +18,7 @@ const DiscountComponent = ({ handleDiscountEnableChange }) => {
                         handleDiscountEnableChange(value);
                     }
                 }}
+                style={styles.textInput}
             >
             </TextInput>
             <Switch
@@ -30,3 +31,10 @@ const DiscountComponent = ({ handleDiscountEnableChange }) => {
 }
 
 export default DiscountComponent;
+
+const styles = StyleSheet.create({
+    textInput: {
+        fontFamily: 'UpperEastSide',
+        fontSize: 30
+    }
+})
