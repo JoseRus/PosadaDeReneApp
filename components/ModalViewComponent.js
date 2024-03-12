@@ -5,6 +5,7 @@ import { BSON } from 'realm';
 import { useRealm, useObject } from '@realm/react';
 import { ItemObject } from '../Data/ItemObject';
 import { Switch } from '@rneui/base';
+import TextComponent from './TextComponent';
 
 const ModalViewComponent = (props) => {
     let item;
@@ -38,17 +39,17 @@ const ModalViewComponent = (props) => {
     return (
         <View style={styles.centered}>
             <View style={styles.modalView}>
-                <Text style={{ padding: 5, fontSize: 20 }}>Nuevo Item</Text>
+                <TextComponent style={styles.title}>Nuevo Item</TextComponent>
                 <TextInput placeholder="Titulo" style={styles.input} value={title} onChangeText={setTitle}></TextInput>
                 <TextInput placeholder="Descripcion" style={styles.input} value={description} onChangeText={setDescription}></TextInput>
                 <TextInput placeholder="Precio" style={styles.input} inputMode="decimal" value={price} onChangeText={setPrice}></TextInput>
-                <View>
-                    <Text>Multiples</Text>
-                    <Switch value={multiple} onValueChange={toggleSwitch}></Switch>
+                <View style={{flexDirection: 'row', margin: 5}}>
+                    <TextComponent style={[styles.text, {flexGrow: 1}]}>Multiples</TextComponent>
+                    <Switch value={multiple} onValueChange={toggleSwitch} style={{flexGrow: 0, marginTop: '1', marginBottom: '1'}}></Switch>
                 </View>
                 <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 15 }}>
-                    <Button title={"Cancelar"} color="#4f4f4f" onPress={() => { props.setModalVisible(false) }}></Button>
-                    <Button title={"Guardar"} onPress={handleSavePress}></Button>
+                    <Button title={"Cancelar"} color="#4f4f4f" onPress={() => { props.setModalVisible(false) }} style={{fontFamily: 'UpperEastSide', fontSize: 25}}></Button>
+                    <Button title={"Guardar"} onPress={handleSavePress} titleStyle={{fontFamily: 'UpperEastSide'}}></Button>
                 </View>
             </View>
         </View>
@@ -81,6 +82,16 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         borderWidth: 1,
         padding: 5,
-        margin: 5
+        margin: 5,
+        fontFamily: 'UpperEastSide',
+        fontSize: 30
+    },
+    title: {
+        padding: 5,
+        fontSize: 40,
+        textAlign: 'center'
+    },
+    text: {
+        fontSize: 30
     }
 });

@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { Button } from '@rneui/base';
 import { useRealm, useQuery } from '@realm/react';
 import { ItemObject } from '../Data/ItemObject';
+import TextComponent from '../components/TextComponent';
 
 const HomeScreen = ({ navigation }) => {
   const [total, setTotal] = useState(0);
@@ -69,8 +70,8 @@ const HomeScreen = ({ navigation }) => {
           </Pressable>
         </View>
         <View style={{ justifyContent: "center", flex: 1 }}>
-          <Text style={{ textAlign: "center", fontSize: 25, marginBottom: 10 }}>No hay elementos</Text>
-          <Button onPress={() => navigation.navigate('Settings')} >Agregar Elementos</Button>
+          <TextComponent style={{ textAlign: "center", fontSize: 25, marginBottom: 10, }}>No hay elementos</TextComponent>
+          <Button onPress={() => navigation.navigate('Settings')} style={{fontFamily: 'UpperEastSide'}}>Agregar Elementos</Button>
         </View>
         <StatusBar style="auto" />
       </View>
@@ -86,6 +87,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 50,
     marginRight: 20,
+    fontFamily: 'UpperEastSide'
   },
   logoContainer: {
     alignItems: 'center',
