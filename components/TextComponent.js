@@ -12,5 +12,6 @@ export default TextComponent;
 const styles = StyleSheet.create({
     default: {
         fontFamily: 'UpperEastSide',
+        color: '#ffd700'
     }
 });

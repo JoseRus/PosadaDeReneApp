@@ -1,6 +1,6 @@
 import Realm from 'realm';
 Realm.flags.THROW_ON_GLOBAL_REALM = true
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import HomeScreen from './Screens/HomeScreen';
 import SettingsScreen from './Screens/SettingsScreen';
 import { RealmProvider } from '@realm/react';
@@ -23,7 +23,7 @@ export default function App() {
 
   return (
     <RealmProvider schema={[ItemObject]} schemaVersion={2}>
-      <NavigationContainer>
+      <NavigationContainer theme={theme}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen
             name='Home'
@@ -38,4 +38,12 @@ export default function App() {
       </NavigationContainer>
     </RealmProvider>
   ); 
+}
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: '#0a0a0a'
+  }
 }

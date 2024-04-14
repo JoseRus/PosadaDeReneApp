@@ -25,7 +25,7 @@ const SettingsScreen = ({ navigation }) => {
             <View style={styles.container}>
                 <View>
                     <Pressable onPress={() => { navigation.navigate('Home') }}>
-                        <FontAwesomeIcon icon={faArrowLeft} size={32}></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faArrowLeft} size={32} style={{color: '#ffd700'}}></FontAwesomeIcon>
                     </Pressable>
                 </View>
                 <ScrollView style={{ flex: 1, marginTop: 20, marginBottom: 20, }}>
@@ -49,7 +49,7 @@ const SettingsScreen = ({ navigation }) => {
                 <StatusBar style="auto" />
                 <View style={{ flexDirection: "row", justifyContent: "center", position: "absolute", bottom: 20, right: 20 }}>
                     <Pressable onPress={() => { setModalVisible(true) }}>
-                        <FontAwesomeIcon icon={faCirclePlus} size={64} style={{ color: "#045ffb", backgroundColor: "#fff", borderRadius: 50 }} />
+                        <FontAwesomeIcon icon={faCirclePlus} size={64} style={{ color: "#ffd700", backgroundColor: "#0a0a0a", borderRadius: 50 }} />
                     </Pressable>
                 </View>
             </View>
@@ -76,7 +76,7 @@ const SettingsScreen = ({ navigation }) => {
             <StatusBar style="auto" />
             <View style={{ flexDirection: "row", justifyContent: "center", position: "absolute", bottom: 20, right: 20 }}>
                 <Pressable onPress={() => { setModalVisible(true) }}>
-                    <FontAwesomeIcon icon={faCirclePlus} size={64} style={{ color: "#045ffb", backgroundColor: "#fff", borderRadius: 50 }} />
+                    <FontAwesomeIcon icon={faCirclePlus} size={64} style={{ color: "#ffd700", backgroundColor: "#fff", borderRadius: 50 }} />
                 </Pressable>
             </View>
         </View>

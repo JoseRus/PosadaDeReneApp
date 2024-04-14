@@ -7,40 +7,6 @@ import { faEllipsisVertical, faPenToSquare, faTrash } from "@fortawesome/free-so
 import { useRealm, useObject } from "@realm/react"; import { ItemObject } from "../Data/ItemObject";
 import TextComponent from "./TextComponent";
 
-const styles = StyleSheet.create({
-    card: {
-        borderStyle: "solid",
-        borderColor: "black",
-        borderWidth: 1,
-        borderRadius: 10,
-        padding: 5,
-        marginTop: 5,
-        marginBottom: 5,
-        marginLeft: 0,
-        marginRight: 0,
-    },
-    popup: {
-        position: 'absolute',
-        top: 35,
-        right: 0,
-        backgroundColor: '#fff',
-        padding: 5,
-        flexDirection: 'row',
-        borderColor: '000',
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderRadius: 5,
-        zIndex: 1
-    },
-    title: {
-        fontSize: 40,
-        textAlign: 'center'
-    },
-    text: {
-        fontSize: 30
-    }
-});
-
 const ItemComponent = (props) => {
     const [isChecked, setChecked] = useState(false);
     const [quantity, setQuantity] = useState(1);
@@ -56,7 +22,7 @@ const ItemComponent = (props) => {
         if (isChecked && quant > 0) {
             props.setTotal(currentTotal + tp);
         }
-        else if(isChecked){
+        else if (isChecked) {
             props.setTotal(currentTotal);
         }
     }
@@ -66,32 +32,33 @@ const ItemComponent = (props) => {
     }
 
     return (
-        <Card containerStyle={styles.card}>
-            <View style={{ flexDirection: 'row', marginBottom: 5 }}>
-                <View style={{ flexGrow: 2 }}>
-                    <TextComponent style={styles.title}>{props.title}</TextComponent>
+        
+            <Card containerStyle={styles.card}>
+                <View style={{ flexDirection: 'row', marginBottom: 5 }}>
+                    <View style={{ flexGrow: 1 }}>
+                        <TextComponent style={styles.title}>{props.title}</TextComponent>
+                    </View>
+                    <View style={{ flexGrow: 0 }}>
+                        <CheckMenuButton
+                            isSettings={props.isSettings}
+                            handleCheckChange={handleCheckChange}
+                            handleShowItemModal={props.handleShowItemModal}
+                            price={props.price} id={props.id}
+                            quantity={quantity}
+                            totalPrice={totalPrice}
+                            isChecked={isChecked}
+                            setChecked={setChecked}>
+                        </CheckMenuButton>
+                    </View>
                 </View>
-                <View style={{ flexGrow: 0 }}>
-                    <CheckMenuButton
-                        isSettings={props.isSettings}
-                        handleCheckChange={handleCheckChange}
-                        handleShowItemModal={props.handleShowItemModal}
-                        price={props.price} id={props.id}
-                        quantity={quantity}
-                        totalPrice={totalPrice}
-                        isChecked={isChecked}
-                        setChecked={setChecked}>
-                    </CheckMenuButton>
-                </View>
-            </View>
 
-            <Card.Divider />
-            <View style={{ alignItems: "left" }}>
-                <TextComponent style={styles.text}>{props.description}</TextComponent>
-                <TextComponent style={[{ textAlign: "right" }, styles.text]}>${props.price}</TextComponent>
-                {props.multiple ? <TextInput value={quantity.toString()} onChangeText={updateQuantity} inputMode="decimal" style={{fontFamily: 'UpperEastSide', fontSize: 25}}></TextInput> : ''}
-            </View>
-        </Card>
+                <Card.Divider color={'#ffd700'} />
+                <View style={{ alignItems: "left" }}>
+                    <TextComponent style={styles.text}>{props.description}</TextComponent>
+                    <TextComponent style={[{ textAlign: "right" }, styles.text]}>${props.price}</TextComponent>
+                    {props.multiple ? <TextInput value={quantity.toString()} onChangeText={updateQuantity} inputMode="decimal" style={{ fontFamily: 'UpperEastSide', fontSize: 25 }}></TextInput> : ''}
+                </View>
+            </Card>
     );
 };
 
@@ -105,7 +72,7 @@ function CheckMenuButton(props) {
         return (
             <View>
                 <Pressable onPress={() => { setModalVisible(!modalVisible) }}>
-                    <FontAwesomeIcon icon={faEllipsisVertical} size={28} />
+                    <FontAwesomeIcon icon={faEllipsisVertical} size={28}  style={{color: '#ffd700'}}/>
                 </Pressable>
                 <ItemSettingsMenu
                     modalVisible={modalVisible}
@@ -124,7 +91,8 @@ function CheckMenuButton(props) {
             props.setChecked(!props.isChecked);
             props.handleCheckChange(!props.isChecked ? totalPrice : totalPrice * (-1))
         }}
-        style={{ width: 32, height: 32 }}>
+        style={{ width: 32, height: 32, borderColor: '#ffd700' }}
+        color={'#ffd700'}>
 
     </CheckBox>
 }
@@ -143,10 +111,10 @@ function ItemSettingsMenu({ modalVisible, setModalVisible, handleShowItemModal, 
         return (
             <View style={styles.popup}>
                 <Pressable style={{ paddingEnd: 15 }} onPress={() => { handleShowItemModal(true, id); setModalVisible(false) }}>
-                    <FontAwesomeIcon icon={faPenToSquare} size={28}></FontAwesomeIcon>
+                    <FontAwesomeIcon icon={faPenToSquare} size={28} style={{color: '#0a0a0a'}}></FontAwesomeIcon>
                 </Pressable>
                 <Pressable onPress={onDeletePress}>
-                    <FontAwesomeIcon icon={faTrash} size={28}></FontAwesomeIcon>
+                    <FontAwesomeIcon icon={faTrash} size={28} style={{color: '#0a0a0a'}}></FontAwesomeIcon>
                 </Pressable>
             </View>
         );
@@ -154,3 +122,39 @@ function ItemSettingsMenu({ modalVisible, setModalVisible, handleShowItemModal, 
 
     return
 }
+
+const styles = StyleSheet.create({
+    card: {
+        borderStyle: "solid",
+        borderColor: '#ffd700',
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 5,
+        marginTop: 5,
+        marginBottom: 5,
+        marginLeft: 0,
+        marginRight: 0,
+        backgroundColor: '#0a0a0a'
+    },
+    popup: {
+        position: 'absolute',
+        top: 35,
+        right: 0,
+        backgroundColor: '#ffd700',
+        padding: 5,
+        flexDirection: 'row',
+        borderColor: '000',
+        borderStyle: 'solid',
+        borderWidth: 3,
+        borderRadius: 5,
+        borderColor: '#877a31',
+        zIndex: 1
+    },
+    title: {
+        fontSize: 40,
+        textAlign: 'center'
+    },
+    text: {
+        fontSize: 30
+    }
+});
