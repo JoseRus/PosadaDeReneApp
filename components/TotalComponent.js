@@ -1,5 +1,6 @@
 import * as React from "react";
 import { View, Text, StyleSheet } from 'react-native';
+import TextComponent from "./TextComponent";
 
 const styles = StyleSheet.create({
     total_text: {
@@ -8,7 +9,7 @@ const styles = StyleSheet.create({
     },
     total_container: {
         flexDirection: "row",
-        backgroundColor: "#969696",
+        backgroundColor: "rgba(255, 215, 0, 0.36)",
         justifyContent: "space-between",
         borderRadius: 5,
         padding: 5,
@@ -19,8 +20,8 @@ const styles = StyleSheet.create({
 const TotalComponent = (props) => {
     return (
         <View style={styles.total_container}>
-            <Text style={styles.total_text}>Total</Text>
-            <Text style={styles.total_text}>${calculateTotal(props.total, props.discount)}</Text>
+            <TextComponent style={styles.total_text}>Total</TextComponent>
+            <TextComponent style={styles.total_text}>${calculateTotal(props.total, props.discount)}</TextComponent>
         </View>
     )
 };

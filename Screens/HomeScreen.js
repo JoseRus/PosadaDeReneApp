@@ -32,7 +32,7 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.logoContainer}>
           <LogoComponent style={{}}></LogoComponent>
           <Pressable onPress={() => navigation.navigate('Settings')}>
-            <FontAwesomeIcon icon={faGear} size={32} style={{}} />
+            <FontAwesomeIcon icon={faGear} size={32} style={{color: "#ffd700"}} />
           </Pressable>
         </View>
         <ScrollView style={{ flex: 1, marginTop: 20, marginBottom: 20 }}>
@@ -48,7 +48,6 @@ const HomeScreen = ({ navigation }) => {
                 isSettings={false}
                 total={total}
                 setTotal={setTotal}>
-
               </ItemComponent>
             )
           })}
@@ -84,10 +83,9 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginLeft: 20,
     marginTop: 50,
-    marginRight: 20,
-    fontFamily: 'UpperEastSide'
+    paddingStart: 20, 
+    paddingEnd: 20,
   },
   logoContainer: {
     alignItems: 'center',

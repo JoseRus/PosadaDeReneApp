@@ -6,6 +6,7 @@ import { useRealm, useObject } from '@realm/react';
 import { ItemObject } from '../Data/ItemObject';
 import { Switch } from '@rneui/base';
 import TextComponent from './TextComponent';
+import CustomButton from './CustomButtonComponent';
 
 const ModalViewComponent = (props) => {
     let item;
@@ -40,16 +41,16 @@ const ModalViewComponent = (props) => {
         <View style={styles.centered}>
             <View style={styles.modalView}>
                 <TextComponent style={styles.title}>Nuevo Item</TextComponent>
-                <TextInput placeholder="Titulo" style={styles.input} value={title} onChangeText={setTitle}></TextInput>
-                <TextInput placeholder="Descripcion" style={styles.input} value={description} onChangeText={setDescription}></TextInput>
-                <TextInput placeholder="Precio" style={styles.input} inputMode="decimal" value={price} onChangeText={setPrice}></TextInput>
+                <TextInput placeholder="Titulo" placeholderTextColor={'#a89c52'} style={styles.input} value={title} onChangeText={setTitle}></TextInput>
+                <TextInput placeholder="Descripcion" placeholderTextColor={'#a89c52'} style={styles.input} value={description} onChangeText={setDescription}></TextInput>
+                <TextInput placeholder="Precio" placeholderTextColor={'#a89c52'} style={styles.input} inputMode="decimal" value={price} onChangeText={setPrice}></TextInput>
                 <View style={{flexDirection: 'row', margin: 5}}>
                     <TextComponent style={[styles.text, {flexGrow: 1}]}>Multiples</TextComponent>
-                    <Switch value={multiple} onValueChange={toggleSwitch} style={{flexGrow: 0, marginTop: '1', marginBottom: '1'}}></Switch>
+                    <Switch value={multiple} onValueChange={toggleSwitch} style={{flexGrow: 0, marginTop: '1', marginBottom: '1'}} color='#ffd700'></Switch>
                 </View>
                 <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 15 }}>
-                    <Button title={"Cancelar"} color="#4f4f4f" onPress={() => { props.setModalVisible(false) }} style={{fontFamily: 'UpperEastSide', fontSize: 25}}></Button>
-                    <Button title={"Guardar"} onPress={handleSavePress} titleStyle={{fontFamily: 'UpperEastSide'}}></Button>
+                    <CustomButton title={"Cancelar"} onPress={() => { props.setModalVisible(false) }} backgroundColor='#a6a185'></CustomButton>
+                    <CustomButton title={"Guardar"} onPress={handleSavePress} backgroundColor='#ffd700'></CustomButton>
                 </View>
             </View>
         </View>
@@ -65,26 +66,21 @@ const styles = StyleSheet.create({
     },
     modalView: {
         margin: 20,
-        backgroundColor: 'white',
+        backgroundColor: '#0a0a0a',
         borderRadius: 20,
+        borderColor: '#ffd700',
+        borderWidth: 2,
         padding: 15,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5,
     },
     input: {
         borderStyle: "solid",
         borderRadius: 5,
         borderWidth: 1,
+        borderColor: '#ffd700',
         padding: 5,
         margin: 5,
         fontFamily: 'UpperEastSide',
-        fontSize: 30
+        fontSize: 30,
     },
     title: {
         padding: 5,
