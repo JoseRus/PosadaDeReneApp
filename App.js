@@ -13,7 +13,7 @@ import { ImageBackground } from 'react-native';
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  const [fontsLoaded, fontError] = useFonts({ 'UpperEastSide': require('./assets/fonts/UpperEastSide.otf') }, [fontsLoaded, fontError]);
+  const [fontsLoaded, fontError] = useFonts({ 'UpperEastSide': require('./assets/fonts/UpperEastSide.ttf') }, [fontsLoaded, fontError]);
 
   if (!fontsLoaded || fontError) {
     return null;
