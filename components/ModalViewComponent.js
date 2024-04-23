@@ -40,7 +40,7 @@ const ModalViewComponent = (props) => {
     return (
         <View style={styles.centered}>
             <View style={styles.modalView}>
-                <TextComponent style={styles.title}>Nuevo Item</TextComponent>
+                <TextComponent style={styles.title}>{title || 'Nuevo Item'}</TextComponent>
                 <TextInput placeholder="Titulo" placeholderTextColor={'#a89c52'} style={styles.input} value={title} onChangeText={setTitle}></TextInput>
                 <TextInput placeholder="Descripcion" placeholderTextColor={'#a89c52'} style={styles.input} value={description} onChangeText={setDescription}></TextInput>
                 <TextInput placeholder="Precio" placeholderTextColor={'#a89c52'} style={styles.input} inputMode="decimal" value={price} onChangeText={setPrice}></TextInput>
