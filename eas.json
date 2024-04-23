@@ -5,7 +5,8 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "channel": "development"
     },
     "preview": {
       "distribution": "internal",
@@ -14,7 +15,8 @@
         "buildType": "apk",
         "gradleCommand": ":app:assembleRelease",
         "autoIncrement": "true"
-      }
+      },
+      "channel": "preview"
     },
     "production": {
       "distribution": "internal",
@@ -22,7 +24,8 @@
         "buildType": "apk",
         "gradleCommand": ":app:assembleRelease",
         "autoIncrement": "true"
-      }
+      },
+      "channel": "production"
     }
   },
   "submit": {

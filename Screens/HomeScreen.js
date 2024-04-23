@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, StyleSheet, Text, View, Pressable } from 'react-native';
+import { ScrollView, StyleSheet, View, Pressable } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons/faGear';
 import LogoComponent from '../components/LogoComponent';
@@ -8,7 +8,7 @@ import TotalComponent from '../components/TotalComponent';
 import DiscountComponent from '../components/DiscountComponent';
 import { useState } from 'react';
 import { Button } from '@rneui/base';
-import { useRealm, useQuery } from '@realm/react';
+import { useQuery } from '@realm/react';
 import { ItemObject } from '../Data/ItemObject';
 import TextComponent from '../components/TextComponent';
 
@@ -32,7 +32,7 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.logoContainer}>
           <LogoComponent style={{}}></LogoComponent>
           <Pressable onPress={() => navigation.navigate('Settings')}>
-            <FontAwesomeIcon icon={faGear} size={32} style={{color: "#ffd700"}} />
+            <FontAwesomeIcon icon={faGear} size={32} style={{color: "#daa520"}} />
           </Pressable>
         </View>
         <ScrollView style={{ flex: 1, marginTop: 20, marginBottom: 20 }}>

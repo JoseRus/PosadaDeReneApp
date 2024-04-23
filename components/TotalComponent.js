@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import TextComponent from "./TextComponent";
 
 const styles = StyleSheet.create({
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     },
     total_container: {
         flexDirection: "row",
-        backgroundColor: "rgba(255, 215, 0, 0.36)",
+        backgroundColor: "rgba(218, 165, 32, 0.36)",
         justifyContent: "space-between",
         borderRadius: 5,
         padding: 5,

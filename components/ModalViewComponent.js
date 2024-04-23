@@ -46,11 +46,11 @@ const ModalViewComponent = (props) => {
                 <TextInput placeholder="Precio" placeholderTextColor={'#a89c52'} style={styles.input} inputMode="decimal" value={price} onChangeText={setPrice}></TextInput>
                 <View style={{flexDirection: 'row', margin: 5}}>
                     <TextComponent style={[styles.text, {flexGrow: 1}]}>Multiples</TextComponent>
-                    <Switch value={multiple} onValueChange={toggleSwitch} style={{flexGrow: 0, marginTop: '1', marginBottom: '1'}} color='#ffd700'></Switch>
+                    <Switch value={multiple} onValueChange={toggleSwitch} style={{flexGrow: 0, marginTop: '1', marginBottom: '1'}} color='#daa520'></Switch>
                 </View>
                 <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 15 }}>
                     <CustomButton title={"Cancelar"} onPress={() => { props.setModalVisible(false) }} backgroundColor='#a6a185'></CustomButton>
-                    <CustomButton title={"Guardar"} onPress={handleSavePress} backgroundColor='#ffd700'></CustomButton>
+                    <CustomButton title={"Guardar"} onPress={handleSavePress} backgroundColor='#daa520'></CustomButton>
                 </View>
             </View>
         </View>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         margin: 20,
         backgroundColor: '#0a0a0a',
         borderRadius: 20,
-        borderColor: '#ffd700',
+        borderColor: '#daa520',
         borderWidth: 2,
         padding: 15,
     },
@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
         margin: 5,
         fontFamily: 'UpperEastSide',
         fontSize: 30,
+        color: '#ffd700'
     },
     title: {
         padding: 5,
@@ -88,6 +89,6 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     text: {
-        fontSize: 30
+        fontSize: 30,
     }
 });

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card } from "@rneui/base";
-import { View, Text, StyleSheet, Pressable, Alert, Modal, TextInput } from "react-native";
+import { View, StyleSheet, Pressable, TextInput } from "react-native";
 import CheckBox from 'expo-checkbox';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEllipsisVertical, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -72,7 +72,7 @@ function CheckMenuButton(props) {
         return (
             <View>
                 <Pressable onPress={() => { setModalVisible(!modalVisible) }}>
-                    <FontAwesomeIcon icon={faEllipsisVertical} size={28}  style={{color: '#ffd700'}}/>
+                    <FontAwesomeIcon icon={faEllipsisVertical} size={28}  style={{color: '#daa520'}}/>
                 </Pressable>
                 <ItemSettingsMenu
                     modalVisible={modalVisible}
@@ -91,8 +91,8 @@ function CheckMenuButton(props) {
             props.setChecked(!props.isChecked);
             props.handleCheckChange(!props.isChecked ? totalPrice : totalPrice * (-1))
         }}
-        style={{ width: 32, height: 32, borderColor: '#ffd700' }}
-        color={'#ffd700'}>
+        style={{ width: 32, height: 32, borderColor: '#daa520' }}
+        color={'#daa520'}>
 
     </CheckBox>
 }
@@ -126,7 +126,7 @@ function ItemSettingsMenu({ modalVisible, setModalVisible, handleShowItemModal, 
 const styles = StyleSheet.create({
     card: {
         borderStyle: "solid",
-        borderColor: '#ffd700',
+        borderColor: '#daa520',
         borderWidth: 1,
         borderRadius: 10,
         padding: 5,
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 35,
         right: 0,
-        backgroundColor: '#ffd700',
+        backgroundColor: '#daa520',
         padding: 5,
         flexDirection: 'row',
         borderColor: '000',

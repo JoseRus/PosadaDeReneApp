@@ -25,7 +25,7 @@ const DiscountComponent = ({ handleDiscountEnableChange }) => {
             <Switch
                 value={switchEnabled}
                 onValueChange={() => { setSwitchEnabled(!switchEnabled); handleDiscountEnableChange(!switchEnabled ? discount : 0) }}
-                color='#ffd700'
+                color='#daa520'
             >
             </Switch>
         </View>
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     discountView: {
         flexDirection: 'row', 
         justifyContent: 'space-between', 
-        borderColor: '#ffd700', 
+        borderColor: '#daa520', 
         borderWidth: 1, 
         padding: 5, 
         borderRadius: 10

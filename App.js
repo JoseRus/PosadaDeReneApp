@@ -8,13 +8,14 @@ import { ItemObject } from './Data/ItemObject';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
+import { ImageBackground } from 'react-native';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-  const [fontsLoaded, fontError] = useFonts({'UpperEastSide': require('./assets/fonts/UpperEastSide.otf')}, [fontsLoaded, fontError]);
+  const [fontsLoaded, fontError] = useFonts({ 'UpperEastSide': require('./assets/fonts/UpperEastSide.otf') }, [fontsLoaded, fontError]);
 
-  if(!fontsLoaded || fontError){
+  if (!fontsLoaded || fontError) {
     return null;
   }
 
@@ -23,27 +24,29 @@ export default function App() {
 
   return (
     <RealmProvider schema={[ItemObject]} schemaVersion={2}>
-      <NavigationContainer theme={theme}>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen
-            name='Home'
-            component={HomeScreen}
-          />
+      <ImageBackground style={{ flex: 1, backgroundColor: '#0a0a0a' }} source={require('./assets/background-frame-2.png')}>
+        <NavigationContainer theme={theme}>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen
+              name='Home'
+              component={HomeScreen}
+            />
 
-          <Stack.Screen
-            name='Settings'
-            component={SettingsScreen}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+            <Stack.Screen
+              name='Settings'
+              component={SettingsScreen}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ImageBackground>
     </RealmProvider>
-  ); 
+  );
 }
 
 const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: '#0a0a0a'
+    background: 'transparent'
   }
 }
