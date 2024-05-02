@@ -35,10 +35,10 @@ const ItemComponent = (props) => {
         
             <Card containerStyle={styles.card}>
                 <View style={{ flexDirection: 'row', marginBottom: 5 }}>
-                    <View style={{ flexGrow: 1 }}>
+                    <View style={{ flexShrink: 10, flexGrow: 1 }}>
                         <TextComponent style={styles.title}>{props.title}</TextComponent>
                     </View>
-                    <View style={{ flexGrow: 0 }}>
+                    <View style={{flexShrink: 1, flexGrow: 0 }}>
                         <CheckMenuButton
                             isSettings={props.isSettings}
                             handleCheckChange={handleCheckChange}

@@ -12,7 +12,7 @@ import { ItemObject } from "../Data/ItemObject";
 
 const SettingsScreen = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
-    const [currentId, setId] = useState();
+    const [currentId, setId] = useState(null);
     const items = useQuery(ItemObject);
 
     const handleShowItemModal = (show, id) => {
@@ -48,7 +48,7 @@ const SettingsScreen = ({ navigation }) => {
                 </Modal>
                 <StatusBar style="auto" />
                 <View style={{ flexDirection: "row", justifyContent: "center", position: "absolute", bottom: 20, right: 20 }}>
-                    <Pressable onPress={() => { setModalVisible(true) }}>
+                    <Pressable onPress={() => { handleShowItemModal(true, null) }}>
                         <FontAwesomeIcon icon={faCirclePlus} size={64} style={{ color: "#daa520", backgroundColor: "#0a0a0a", borderRadius: 50 }} />
                     </Pressable>
                 </View>
