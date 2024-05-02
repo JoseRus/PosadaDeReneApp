@@ -152,7 +152,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 40,
-        textAlign: 'center'
+        textAlign: 'center',
+        flexWrap: 'wrap'
     },
     text: {
         fontSize: 30

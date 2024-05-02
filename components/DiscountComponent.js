@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     textInput: {
         fontFamily: 'UpperEastSide',
         fontSize: 30,
+        color: '#daa520'
     },
     discountView: {
         flexDirection: 'row', 
@@ -46,6 +47,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#0a0a0a",
         borderWidth: 1, 
         padding: 5, 
-        borderRadius: 10
+        borderRadius: 10,
+        backgroundColor: '#0a0a0a'
     }
 })
